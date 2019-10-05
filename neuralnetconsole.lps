@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Release"/>
+    <Units Count="4">
+      <Unit0>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="137"/>
+        <CursorPos X="43" Y="149"/>
+        <UsageCount Value="42"/>
+        <Bookmarks Count="1">
+          <Item0 Y="144" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="uneuron.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="19"/>
+        <CursorPos Y="89"/>
+        <UsageCount Value="42"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="uneuralnetwork.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="111"/>
+        <CursorPos X="69" Y="134"/>
+        <UsageCount Value="42"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\rtl-console\src\inc\crth.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="71"/>
+        <CursorPos X="17" Y="83"/>
+        <UsageCount Value="9"/>
+      </Unit3>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="225" TopLine="219"/>
+      </Position1>
+      <Position2>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="227" TopLine="219"/>
+      </Position2>
+      <Position3>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="228" TopLine="219"/>
+      </Position3>
+      <Position4>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="229" TopLine="219"/>
+      </Position4>
+      <Position5>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="231" TopLine="219"/>
+      </Position5>
+      <Position6>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="232" TopLine="219"/>
+      </Position6>
+      <Position7>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="235" TopLine="219"/>
+      </Position7>
+      <Position8>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="236" TopLine="219"/>
+      </Position8>
+      <Position9>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="232" TopLine="219"/>
+      </Position9>
+      <Position10>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="235" TopLine="219"/>
+      </Position10>
+      <Position11>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="236" TopLine="219"/>
+      </Position11>
+      <Position12>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="232" TopLine="219"/>
+      </Position12>
+      <Position13>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="229" TopLine="219"/>
+      </Position13>
+      <Position14>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="231" TopLine="219"/>
+      </Position14>
+      <Position15>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="232" TopLine="219"/>
+      </Position15>
+      <Position16>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="235" TopLine="219"/>
+      </Position16>
+      <Position17>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="236" TopLine="219"/>
+      </Position17>
+      <Position18>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="232" TopLine="219"/>
+      </Position18>
+      <Position19>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="235" TopLine="219"/>
+      </Position19>
+      <Position20>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="236" TopLine="219"/>
+      </Position20>
+      <Position21>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="232" TopLine="219"/>
+      </Position21>
+      <Position22>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <Caret Line="28" Column="9" TopLine="16"/>
+      </Position22>
+      <Position23>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="60" TopLine="47"/>
+      </Position23>
+      <Position24>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <Caret Line="28" TopLine="2"/>
+      </Position24>
+      <Position25>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <Caret Line="13" Column="16"/>
+      </Position25>
+      <Position26>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <Caret Line="161" Column="8" TopLine="149"/>
+      </Position26>
+      <Position27>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <Caret Line="174" Column="8" TopLine="153"/>
+      </Position27>
+      <Position28>
+        <Filename Value="neuralnetconsole.lpr"/>
+      </Position28>
+      <Position29>
+        <Filename Value="neuralnetconsole.lpr"/>
+        <Caret Line="173" TopLine="154"/>
+      </Position29>
+      <Position30>
+        <Filename Value="uneuralnetwork.pas"/>
+        <Caret Line="231" TopLine="228"/>
+      </Position30>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="4">
+      <Item1>
+        <Expression Value="inN"/>
+      </Item1>
+      <Item2>
+        <Expression Value="outN"/>
+      </Item2>
+      <Item3>
+        <Expression Value="wMatrix[outN, inN].Weight"/>
+      </Item3>
+      <Item4>
+        <Expression Value="tmp"/>
+      </Item4>
+    </Watches>
+  </Debugging>
+</CONFIG>
