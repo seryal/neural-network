@@ -197,6 +197,10 @@ var
   n: integer;
   inN, outN: integer;
 begin
+  for n := 0 to NeuronCount[0] - 1 do
+    Neuron[0, n].Start;
+
+
   // calc outout value for neural network
   n := Length(FWeigthMatrix);
   for n := 0 to Length(FWeigthMatrix) - 1 do

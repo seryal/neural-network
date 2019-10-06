@@ -8,11 +8,12 @@
       <Unit0>
         <Filename Value="neuralnetconsole.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="137"/>
-        <CursorPos X="43" Y="149"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="118"/>
+        <CursorPos X="31" Y="144"/>
         <UsageCount Value="42"/>
         <Bookmarks Count="1">
-          <Item0 Y="144" ID="1"/>
+          <Item0 Y="142" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
       </Unit0>
@@ -28,10 +29,9 @@
       <Unit2>
         <Filename Value="uneuralnetwork.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="111"/>
-        <CursorPos X="69" Y="134"/>
+        <TopLine Value="185"/>
+        <CursorPos X="38" Y="200"/>
         <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit2>

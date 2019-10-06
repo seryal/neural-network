@@ -83,8 +83,6 @@ begin
     NNet.Input[1] := val2;
     waitVal := val1 xor val2;
     NNet.WaitValue[0] := waitVal;
-    NNet.Neuron[0, 0].Start;
-    NNet.Neuron[0, 1].Start;
     //    TextColor(LightGray);
 
 {
@@ -143,7 +141,7 @@ begin
 
   writeln;
   cursoron;
-  if (gError*2>gGood) then
+  if (gError * 2 > gGood) then
   begin
     TextColor(LightRed);
     WriteLn('Training completed with error: ' + FormatDateTime('hh:mm:ss.zzz', cStop - cStart));
