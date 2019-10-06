@@ -38,7 +38,7 @@ Using a class implementing a neural network:
   NNet.WaitValue[0] := Value1 xor Value2;  // The value we should get
   NNet.Calc;
   // NNet.Output[N] - output value after work neural network
-  // NNet.NNet.WeigthMatrix[Level, OutputNeuron, InputNeuron].Weight;
+  // NNet.WeigthMatrix[Level, OutputNeuron, InputNeuron].Weight;
   // NNet.Neuron[Level, NeuronNumber].Error; // calculated error after work neural network
 
   
