@@ -5,7 +5,7 @@ Neural network that can compute the XOR function.
 
 ![alt preview](https://github.com/seryal/neural-network/blob/master/images/XOR.png)
 
-In the example, the neural network looks like this.
+In the example, the neural network looks like this. The image does not indicate a neuron bias. This is the third neuron with always 1 output.  
 
 ![alt preview](https://github.com/seryal/neural-network/blob/master/images/Network.png)
 
