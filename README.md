@@ -13,6 +13,13 @@ For activation function used Sigmoid y=1/(1+exp(-1*x))
 ![alt preview](https://github.com/seryal/neural-network/blob/master/images/Sigmoid.png)
 
 Program operation example
+
+Weight matrix 0 W11 - weight value between neuron in1 and h1 if you look at the picture.
+
+W22 - between in2 and h2
+
+W31 and W32 - weight from bias neuron.
+
 ![alt preview](https://github.com/seryal/neural-network/blob/master/images/example.png)
 
 
