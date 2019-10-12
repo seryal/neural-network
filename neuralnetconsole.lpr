@@ -3,19 +3,20 @@ program neuralnetconsole;
 uses
   SysUtils,
   crt,
-  uneuron,
+  uneural,
   uneuralnetwork;
 
+const
+  InputValues: array [0..3, 0..1] of byte = ((0, 0), (0, 1), (1, 0), (1, 1));
+  OutputValues: array [0..3] of byte = (0, 1, 1, 0);
 var
   NNet: TNeuralNetwork;
-  n, i, j: integer;
-  m: integer;
-  val1, val2: integer;
-  waitVal: integer;
-  gError: integer;
-  gGood: integer;
-  GoodFlag: boolean;
   cStart, cStop: TDateTime;
+  Epoche: integer;
+  Iteration: integer;
+  gError: double;
+  gAnswerCount: integer;
+  bAnswerCount: integer;
 
   procedure DrawMatrix;
   var
@@ -23,6 +24,21 @@ var
     i: integer;
     j: integer;
   begin
+    GotoXY(1, 2);
+
+    TextColor(LightGray);
+
+
+    for i := 0 to NNet.NeuronCount[0] - 2 do // bias not include
+    begin
+      writeln(Format('Input value %.2d = %6.2n', [i, NNet.Input[i]]));
+
+    end;
+    writeln(Format('Wait value     = %6.2n', [NNet.WaitValue[0]]));
+    TextColor(DarkGray);
+    writeln(Format('Epoche      = %6d', [Epoche]));
+
+
     TextColor(Blue);
     WriteLn('===================================');
     for n := 0 to Length(NNet.WeigthMatrix) - 1 do
@@ -41,9 +57,24 @@ var
       //      WriteLn();
     end;
 
+    TextColor(LightRed);
+    writeln;
+    writeln(Format('Error value %.2d  = %6.3n', [0, gError]));
+    TextColor(LightGreen);
+    writeln;
+    writeln(Format('Correct answer %.2d  = %6d', [0, gAnswerCount]));
+    TextColor(LightRed);
+    writeln(Format('Wrong answer %.2d  = %6d', [0, bAnswerCount]));
+
+
+    TextColor(LightBlue);
+    WriteLn('------------------------------');
+
   end;
 
 begin
+  gAnswerCount := 0;
+  bAnswerCount := 0;
   cStart := now;
 
   ClrScr;
@@ -51,107 +82,58 @@ begin
 
   Randomize;
   cursoroff;
-  gError := 0;
-  gGood := 0;
-  m := 0;
   NNet := TNeuralNetwork.Create;
   NNet.AddLevel(2);
-  NNet.AddLevel(3);
   NNet.AddLevel(2);
   NNet.AddLevel(1);
-  NNet.LearnKoef := 0.5;
-
+  NNet.LearnKoef := 0.1;
 
   WriteLn('Test XOR function');
   WriteLn();
-
-  GoodFlag := True;
-  while ((gError >= (gGood / 2)) or (gGood < 500)) and (m < 200000) do
-  begin
-    Inc(m);
-    GotoXY(1, 2);
-
-    //    if GoodFlag then
-    //    begin
-    val1 := random(2);
-    val2 := random(2);
-    //      GoodFlag := False;
-    //    end;
-
-
-    NNet.Input[0] := val1;
-    NNet.Input[1] := val2;
-    waitVal := val1 xor val2;
-    NNet.WaitValue[0] := waitVal;
-    //    TextColor(LightGray);
-
-{
-    for i := 0 to NNet.NeuronCount[0] - 2 do // bias not include
+  repeat
+    gError := 0;
+    for Iteration := 0 to 3 do
     begin
-      writeln(Format('Input value %.2d = %6.2n', [i, NNet.Input[i]]));
 
-    end;
-    writeln(Format('Wait value     = %6.2n', [NNet.WaitValue[0]]));
-    TextColor(DarkGray);
-    writeln(Format('Iteration      = %6d', [m]));
-}
+      NNet.Input[0] := InputValues[Iteration, 0];
+      NNet.Input[1] := InputValues[Iteration, 1];
+      NNet.WaitValue[0] := OutputValues[Iteration];
 
-    //DrawMatrix;
-    NNet.Calc;
-
-
-    //writeln;
-    for i := 0 to NNet.NeuronCount[NNet.LevelCount - 1] - 2 do
-    begin
-      //      TextColor(LightRed);
-      Inc(gError);
-      if (NNet.Neuron[NNet.LevelCount - 1, i].WaitValue - NNet.Output[i] <= 0.2) and
-        (NNet.Neuron[NNet.LevelCount - 1, i].WaitValue - NNet.Output[i] >= -0.2) then
-      begin
-        //        TextColor(LightGreen);
-        Dec(gError);
-        Inc(gGood);
-        GoodFlag := True;
+      NNet.Calc;
+      case OutputValues[Iteration] of
+        0:
+          if NNet.Output[0] < 0.2 then
+            Inc(gAnswerCount)
+          else
+            Inc(bAnswerCount);
+        1:
+          if NNet.Output[0] > 0.8 then
+            Inc(gAnswerCount)
+          else
+            Inc(bAnswerCount);
       end;
 
-{      writeln(Format('Output value %.2d = %6.3n', [i, NNet.Output[i]]));
-      writeln(Format('Error value %.2d  = %6.3n', [i, NNet.Neuron[NNet.LevelCount - 1, i].Error]));
 
-      writeln(Format('Error Count     = %-8d', [gError]));
-      writeln(Format('Good Count      = %-8d', [gGood]));
- }
+
+      NNet.RecalcWeight;
+      gError := gError + sqr(NNet.Neuron[NNet.LevelCount - 1, 0].Error);
 
     end;
+    //  DrawMatrix;
+    Inc(epoche);
 
-    //TextColor(LightBlue);
-    //WriteLn('------------------------------');
+    if Epoche / 100 = trunc(Epoche / 100) then
+      DrawMatrix;
+  until gError < 0.001;
+  DrawMatrix;
 
-    //ReadLn;
-  end;
+
   TextColor(White);
   cStop := now;
-  DrawMatrix;
-  writeln;
-  TextColor(LightGray);
-  writeln(Format('Iteration       = %-8d', [m]));
-  TextColor(LightRed);
-  writeln(Format('Error Count     = %-8d', [gError]));
-  TextColor(LightGreen);
-  writeln(Format('Good Count      = %-8d', [gGood]));
 
-  writeln;
-  cursoron;
-  if (gError * 2 > gGood) then
-  begin
-    TextColor(LightRed);
-    WriteLn('Training completed with error: ' + FormatDateTime('hh:mm:ss.zzz', cStop - cStart));
-  end
-  else
-  begin
-    TextColor(LightGreen);
-    WriteLn('Training completed successfully: ' + FormatDateTime('hh:mm:ss.zzz', cStop - cStart));
-  end;
-  writeln;
+
+  WriteLn('Training ' + FormatDateTime('hh:mm:ss.zzz', cStop - cStart));
+
 
   TextColor(LightGray);
   WriteLn();

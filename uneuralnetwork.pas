@@ -5,7 +5,7 @@ unit uneuralnetwork;
 interface
 
 uses
-  SysUtils, uneuron;
+  SysUtils, uneural, Classes;
 
 type
   TWeight = record
@@ -48,6 +48,8 @@ type
     procedure AddLevel(ANeuralCount: integer);
     procedure Calc;
     procedure RecalcWeight;
+    procedure SaveToFile(AFileName: TFileName);
+    procedure LoadFromFile(AFileName: TFilename);
     property LevelCount: integer read FLevelCount;
     property NeuronCount[ALevel: integer]: integer read GetNeuronCount;
     property Input[AIndex: integer]: double read GetInput write SetInput;
@@ -76,11 +78,8 @@ begin
 end;
 
 function TNeuralNetwork.GetInput(AIndex: integer): double;
-var
-  _ArrayNeural: TArrayNeuron;
 begin
-  _ArrayNeural := FMatrix[0];
-  Result := _ArrayNeural[AIndex].InputValue;
+  Result := FMatrix[0, AIndex].InputValue;
 end;
 
 function TNeuralNetwork.GetOutput(AIndex: integer): double;
@@ -131,7 +130,7 @@ begin
   for i := 0 to outputNeuronCount - 1 do
     for j := 0 to inputNeuronCount - 1 do
     begin
-      FWeigthMatrix[matrixCount - 1, i, j].Weight := random * 10 - 5;
+      FWeigthMatrix[matrixCount - 1, i, j].Weight := random - 0.5;
     end;
 end;
 
@@ -196,12 +195,12 @@ var
   wMatrix: array of array of TWeight;
   n: integer;
   inN, outN: integer;
+  tmp: double;
 begin
   for n := 0 to NeuronCount[0] - 1 do
     Neuron[0, n].Start;
 
 
-  // calc outout value for neural network
   n := Length(FWeigthMatrix);
   for n := 0 to Length(FWeigthMatrix) - 1 do
   begin
@@ -217,13 +216,12 @@ begin
     end;
   end;
 
-  // calc error for output neurons
+  // calc error
   for inN := 0 to NeuronCount[n + 1] - 1 do
   begin
     Neuron[n + 1, inN].Error := WaitValue[inN] - Neuron[n + 1, inN].OutputValue;
   end;
 
-  // calc error fo neural network
   for n := Length(FWeigthMatrix) - 1 downto 0 do
   begin
     wMatrix := FWeigthMatrix[n];
@@ -236,7 +234,7 @@ begin
     end;
   end;
 
-  RecalcWeight;
+  //RecalcWeight;
 
 end;
 
@@ -255,12 +253,69 @@ begin
       for inN := 0 to length(wMatrix[outN]) - 1 do
       begin
         tmp := Neuron[n + 1, inN].OutputValue;
+        //        tmp :=
+        //wMatrix[i, j] := wMatrix[i, j] + LearnKoef * Neuron[n, i].Error * Neuron[n, i].InputValue * tmp * (1 - tmp);
+        //wMatrix[i, j] := wMatrix[i, j] + LearnKoef * Neuron[n, i].Error * Neuron[n, i].OutputValue;
         wMatrix[outN, inN].Weight := wMatrix[outN, inN].Weight + LearnKoef * Neuron[n + 1, inN].Error *
           Neuron[n, outN].OutputValue * tmp * (1 - tmp);
       end;
     end;
   end;
 
+end;
+
+procedure TNeuralNetwork.SaveToFile(AFileName: TFileName);
+var
+  fileStream: TFileStream;
+  elementSize: integer;
+  i, j, k: integer;
+  arraySize: integer;
+  val: double;
+begin
+  fileStream := TFileStream.Create(AFileName, fmCreate);
+  try
+    arraySize := 0;
+    elementSize := sizeof(TWeight);
+    for i := 0 to Length(FWeigthMatrix) - 1 do
+      for j := 0 to length(FWeigthMatrix[i]) - 1 do
+        for k := 0 to Length(FWeigthMatrix[i, j]) - 1 do
+        begin
+          //        arraySize := arraySize + length(FWeigthMatrix[i, j]);
+          val := FWeigthMatrix[i, j, k].Weight;
+          fileStream.Write(val, elementSize);
+        end;
+
+    //    fileStream.Write(FWeigthMatrix[0, 0, 0], arraySize * elementSize);
+  finally
+    FreeAndNil(fileStream);
+  end;
+end;
+
+
+procedure TNeuralNetwork.LoadFromFile(AFileName: TFilename);
+var
+  fileStream: TFileStream;
+  elementSize: integer;
+  i, j, k: integer;
+  val: double;
+
+begin
+  fileStream := TFileStream.Create(AFileName, fmOpenRead);
+  try
+
+    elementSize := sizeof(TWeight);
+
+    for i := 0 to Length(FWeigthMatrix) - 1 do
+      for j := 0 to length(FWeigthMatrix[i]) - 1 do
+        for k := 0 to length(FWeigthMatrix[i, j]) - 1 do
+        begin
+          fileStream.Read(val, elementSize);
+          FWeigthMatrix[i, j, k].Weight := val;
+        end;
+
+  finally
+    FreeAndNil(fileStream);
+  end;
 end;
 
 end.

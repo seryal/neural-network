@@ -1,4 +1,4 @@
-unit uneuron;
+unit uneural;
 
 {$mode objfpc}{$H+}
 
@@ -72,6 +72,7 @@ end;
 function TNeuron.Sigmoid(AValue: double): double;
 begin
   Result := 1 / (1 + exp(-1 * AValue));
+
 end;
 
 function TNeuron.Linear(AValue: double): double;
