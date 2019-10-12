@@ -1,5 +1,6 @@
 # neural-network
 The “hello world” of neural networks. XOR calculation.
+This is a demo example of working with a neural network. Operations on matrices are not optimized. Calculations take a long time. There is something to optimize.
 
 Neural network that can compute the XOR function.
 
