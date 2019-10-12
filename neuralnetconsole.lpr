@@ -29,12 +29,6 @@ var
     TextColor(LightGray);
 
 
-    for i := 0 to NNet.NeuronCount[0] - 2 do // bias not include
-    begin
-      writeln(Format('Input value %.2d = %6.2n', [i, NNet.Input[i]]));
-
-    end;
-    writeln(Format('Wait value     = %6.2n', [NNet.WaitValue[0]]));
     TextColor(DarkGray);
     writeln(Format('Epoche      = %6d', [Epoche]));
 
@@ -59,7 +53,7 @@ var
 
     TextColor(LightRed);
     writeln;
-    writeln(Format('Error value %.2d  = %6.4n', [0, gError]));
+    writeln(Format('Error value = %6.4n', [gError]));
     TextColor(LightGreen);
     writeln;
     writeln(Format('Correct answer %.2d  = %6d', [0, gAnswerCount]));
