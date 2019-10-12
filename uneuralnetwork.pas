@@ -5,7 +5,7 @@ unit uneuralnetwork;
 interface
 
 uses
-  SysUtils, uneural, Classes;
+  SysUtils, uneuron, Classes;
 
 type
   TWeight = record

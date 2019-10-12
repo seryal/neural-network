@@ -3,7 +3,7 @@ program neuralnetconsole;
 uses
   SysUtils,
   crt,
-  uneural,
+  uneuron,
   uneuralnetwork;
 
 const
@@ -59,7 +59,7 @@ var
 
     TextColor(LightRed);
     writeln;
-    writeln(Format('Error value %.2d  = %6.3n', [0, gError]));
+    writeln(Format('Error value %.2d  = %6.4n', [0, gError]));
     TextColor(LightGreen);
     writeln;
     writeln(Format('Correct answer %.2d  = %6d', [0, gAnswerCount]));

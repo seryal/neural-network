@@ -1,4 +1,4 @@
-unit uneural;
+unit uneuron;
 
 {$mode objfpc}{$H+}
 
